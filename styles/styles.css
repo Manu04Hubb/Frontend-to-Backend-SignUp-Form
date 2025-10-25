@@ -1,3 +1,8 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 body {
 font-family: Arial, sans-serif;
 background: #f0f2f5;
@@ -11,22 +16,33 @@ height: 100vh;
 .container {
 background: #fff;
 padding: 25px;
-border-radius: 10px;
-width: 350px;
+border-radius: 30px 0px;
+width: 400px;
 box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
-
+.container:hover{
+box-shadow: 0 8px 16px rgba(19, 19, 197, 0.61);
+transition: 0.5s;
+background-color: rgba(19, 19, 197, 0.089);
+}
 
 h2 {
 text-align: center;
 margin-bottom: 20px;
+font-weight: 700;
+font-family: "Montserrat", sans-serif;
+text-decoration: underline;
+text-underline-offset: 6px;
+line-height: 1.5;
+color: #333;
 }
 
 
 label {
-font-weight: bold;
+font-weight: 400;
 display: block;
 margin-top: 10px;
+font-family: "Open Sans", sans-serif;
 }
 
 
@@ -36,21 +52,32 @@ padding: 8px;
 margin-top: 5px;
 border: 1px solid #ccc;
 border-radius: 5px;
+font-family: "Open Sans", sans-serif;
 }
+#fullName:focus, #email:focus, #password:focus, #confirmPassword:focus {
+border-color: #3b7cc2;
+outline: none;
+box-shadow:  0px 0px 5px rgb(70, 168, 214);
 
+}
 #signUpBtn {
 width: 100%;
 margin-top: 20px;
 padding: 10px;
-background: #007bff;
+background: #3b7cc2;
 color: white;
 border: none;
 border-radius: 5px;
 cursor: pointer;
+font-weight: 700;
+font-family: "Montserrat", sans-serif;
 }
 
-button:hover {
-background: #0056b3;
+#signUpBtn:hover {
+background-color: #0056b3;
+border-radius: 20px;
+transition: 0.5s;
+
 }
 
 #errorMsg {

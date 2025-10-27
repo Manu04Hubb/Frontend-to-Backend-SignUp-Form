@@ -15,15 +15,19 @@
         <form id="signupForm" action="actions/signup.php" method="POST">
             <label for="fullname">Fullname</label>
             <input type="text" id="fullName" name="fullname" required>
-
+            <p id="nameErr"></p>
+            
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required>
+            <p id="emailErr"></p>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
+            <p id="passErr"></p>
 
             <label for="confirmpassword">Confirm Password</label>
             <input type="password" id="confirmPassword" name="confirmpassword" required>
+            <p id="confirmPassErr"></p>
 
             <button type="submit" id="signUpBtn">Sign Up</button>
         </form>

@@ -6,11 +6,34 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $password = $_POST['password'];
     $pwd_confirm = $_POST['pwd_confirm'];
     
-    require_once 'tsiregisterlogindbconnect.php'
+
+    require_once 'tsiregisterlogindbconnect.php';
+    //Hash users password first
+    $password_hashed = password_hash($password,PASSWORD_DEFAULT);
+    //Verify the hased password
+    $verified_password = password_verify($password,$password_hashed);
+    // Runnning a prepare statement to insert userdata into the database
+    $insert_query = "INSERT INTO tsi_user_registrations (user_name,user_email,user_password,pwd_confirm)
+              VALUES(:user_name,:user_email,:user_password,:pwd_confirm);";
+    $stmt = $pdo->prepare($insert_query);
+
+    $stmt->bindParam(":user_name",$username);
+    $stmt->bindParam(":user_email",$email);
+    $stmt->bindParam(":user_password",$password_hashed);
+    $stmt->bindParam(":pwd_confirm",$verified_password);
+
+    $stmt->execute();
+    
+    $pdo = null;
+    $stmt = null;
+    die();
 
     
-
 }
+ 
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

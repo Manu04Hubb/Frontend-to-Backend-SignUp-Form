@@ -9,7 +9,7 @@ document.getElementById('signupForm').addEventListener('submit', function(e){
     const emailErr = document.getElementById('emailErr');
     const passErr = document.getElementById('passErr');
     const confirmPassErr = document.getElementById('confirmPassErr');
-
+    
     if(fullname === '' || email === '' || password === '' || confirmPassword === ''){
         e.preventDefault();
         errorMsg.textContent = 'All fields are required.';

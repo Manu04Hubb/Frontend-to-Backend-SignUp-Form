@@ -27,11 +27,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $pdo = null;
     $stmt = null;
     die();
-
-    
 }
- 
-
 
 
 ?>
@@ -43,7 +39,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <title>Registration Document</title>
 </head>
 <body>
-    <form action="" method="post">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="Enter Username" required>
         <br><br>
@@ -62,6 +58,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         <button type="submit" >Register</button>
         <p>Already Have an account? <a href="tsilogin.php" target="_blank" rel="noopener noreferrer">Login</a></p>
+        <p>To Change Credentials <a href="tsiupdate.php" target="_blank" rel="noopener noreferrer">Change username or password</a></p>
+        <p>To Logout <a href="tsidelete.php" target="_blank" rel="noopener noreferrer">Logout</a></p>
     </form>
 </body>
 </html>
+
+

@@ -19,13 +19,13 @@ require_once 'signup_view.inc.php';
         <form action="signup.inc.php" method="POST">
             <label for="username">Username:</label>
             <input type="text" id="userName" name="username" required><br><br>
+            
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" placeholder="Email" required><br><br>
 
             <label for="Password">Password:</label>
             <input type="password" id="password" name="password" required><br><br>
 
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email" placeholder="Email" required><br><br>
-            
             <button type="submit" id="signupBtn">Sign Up</button>
         </form>
     </div>

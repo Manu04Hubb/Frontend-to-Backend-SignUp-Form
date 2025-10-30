@@ -1,7 +1,7 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $username = $_POST['usename'];
+    $username = $_POST['username'];
     $pwd = $_POST['password'];
 }else{
-    header("Location: frontpagefile.php")
+    header("Location: index.php");
 }

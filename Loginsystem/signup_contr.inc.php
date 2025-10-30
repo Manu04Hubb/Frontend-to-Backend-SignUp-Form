@@ -1,8 +1,9 @@
 <?php
+//Inside here we take user data and do something with it
 declare(strict_types=1);
 //Function to check for empty input fields
-function is_input_empty(string $username, string $password, string $email) {
-    if(empty($username) || empty($password) || empty($email)) {
+function is_input_empty(string $username, string $email ,string $password,) {
+    if(empty($username) || empty($email) || empty($password))  {
         return true;
     }else {
         return false;
@@ -35,13 +36,20 @@ function is_email_registered(object $pdo ,string $email){
 }
 
 function create_user(object $pdo ,string $username, string $password, string $email){
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    
+    $options = [
+      'cost' => 12 //Cost factor
+    ];
 
-    $query = "INSERT INTO users (username, password, email) VALUES (:username, :password, :email);";
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT,$options);
+
+    $query = "INSERT INTO login_system_users (user_name, user_email, user_password) 
+    VALUES (:username, :password, :email);";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":username", $username);
-    $stmt->bindParam(":password", $hashedPassword);
     $stmt->bindParam(":email", $email);
+    $stmt->bindParam(":password", $hashedPassword);
+    
     $stmt->execute();
 }
 

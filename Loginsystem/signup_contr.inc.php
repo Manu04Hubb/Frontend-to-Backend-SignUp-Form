@@ -2,7 +2,7 @@
 //Inside here we take user data and do something with it
 declare(strict_types=1);
 //Function to check for empty input fields
-function is_input_empty(string $username, string $email ,string $password,) {
+function is_input_empty(string $username, string $email ,string $password) {
     if(empty($username) || empty($email) || empty($password))  {
         return true;
     }else {
@@ -36,7 +36,7 @@ function is_email_registered(object $pdo ,string $email){
 }
 
 function create_user(object $pdo ,string $username, string $password, string $email){
-    
+
     $options = [
       'cost' => 12 //Cost factor
     ];

@@ -8,7 +8,6 @@ require_once 'tsidb_connection.php';
 
         $stmt = $pdo->prepare($update_query);
 
-      
         $stmt->execute();
 
         $pdo = null;

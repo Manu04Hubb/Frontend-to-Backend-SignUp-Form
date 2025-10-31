@@ -26,26 +26,26 @@ try {
     // Close connections and statement
     $pdo = null;
     $stmt = null;
-}
-
-catch(PDOException $e){
- die("Error : " . $e->getMessage());
+} catch (PDOException $e) {
+    die("Error : " . $e->getMessage());
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display-User-Profile-Credentials</title>
     <link rel="stylesheet" href="tstyle.css">
 </head>
+
 <body>
     <h2>Information Retrieved from the Database</h2>
-    <?php if(empty($users_profiles)):?>
+    <?php if (empty($users_profiles)): ?>
         <p>No User Profile found</p>
-    <?php else:?>
-         
+    <?php else: ?>
+
         <table>
             <thead>
                 <tr>
@@ -57,25 +57,27 @@ catch(PDOException $e){
                     <th>take_actions</th>
                 </tr>
             </thead>
-            
+
             <tbody>
-                <?php foreach($users_profiles as $user_profile):?>
-                <tr>
-                <td><?= htmlspecialchars($user_profile['user_id'])?></td> 
-                <td><?= htmlspecialchars($user_profile['user_name'])?></td>
-                <td><?= htmlspecialchars($user_profile['user_email'])?></td>
-                <td><?= htmlspecialchars($user_profile['user_password'])?></td>
-                <td><?= htmlspecialchars($user_profile['created_at'])?></td>
-                <td>
-                    <a href="tsiupdate.php" target="_blank" rel="noopener noreferrer">Edit Credentials</a> <br>
-                    <a href="tsidelete.php" target="_blank" rel="noopener noreferrer" onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>
-                </td>
-                <?php endforeach;?>
-                </tr>
+                <?php foreach ($users_profiles as $user_profile): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($user_profile['user_id']) ?></td>
+                        <td><?= htmlspecialchars($user_profile['user_name']) ?></td>
+                        <td><?= htmlspecialchars($user_profile['user_email']) ?></td>
+                        <td><?= htmlspecialchars($user_profile['user_password']) ?></td>
+                        <td><?= htmlspecialchars($user_profile['created_at']) ?></td>
+                        <td>
+                            <a href="tsiupdate.php" target="_blank" rel="noopener noreferrer">Edit Credentials</a> <br>
+                            <a href="tsidelete.php" target="_blank" rel="noopener noreferrer"
+                                onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
-        <?php endif;?>
-        <br>
-        <br>
+    <?php endif; ?>
+    <br>
+    <br>
 </body>
+
 </html>

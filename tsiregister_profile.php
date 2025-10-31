@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $pwd_confirm = $_POST['pwd_confirm'];
     
 
-    require_once 'tsiregisterlogindbconnect.php';
+    require_once 'tsi_dbconnection.php';
     //Hash users password first
     $password_hashed = password_hash($password,PASSWORD_DEFAULT);
     //Verify the hased password
@@ -16,12 +16,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $insert_query = "INSERT INTO tsi_user_registrations (user_name,user_email,user_password,pwd_confirm)
               VALUES(:user_name,:user_email,:user_password,:pwd_confirm);";
     $stmt = $pdo->prepare($insert_query);
-
+    
     $stmt->bindParam(":user_name",$username);
     $stmt->bindParam(":user_email",$email);
     $stmt->bindParam(":user_password",$password_hashed);
     $stmt->bindParam(":pwd_confirm",$verified_password);
-
+    
     $stmt->execute();
     
     $pdo = null;
@@ -57,6 +57,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <br><br>
 
         <button type="submit" >Register</button>
+        <button type="submit">Update Profile</button>
         <p>Already Have an account? <a href="tsilogin.php" target="_blank" rel="noopener noreferrer">Login</a></p>
         <p>To Change Credentials <a href="tsiupdate.php" target="_blank" rel="noopener noreferrer">Change username or password</a></p>
         <p>To Logout <a href="tsidelete.php" target="_blank" rel="noopener noreferrer">Logout</a></p>

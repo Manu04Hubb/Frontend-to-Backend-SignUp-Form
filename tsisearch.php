@@ -1,5 +1,5 @@
 <?php
-
+ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     //To handle Search of a User
         $sql_query = "SELECT * FROM users_talbe WHERE username = :usersearch;";
 
@@ -12,7 +12,7 @@
         $stmt->execute();
         $pdo = null; // Close the database connection
         $stmt = null; // Close the statement
-    
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

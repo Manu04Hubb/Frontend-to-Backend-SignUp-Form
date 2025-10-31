@@ -1,31 +1,32 @@
 <?php
 require_once 'tsidb_connection.php';
 
-try{
+try {
     // Variable to hold the results, initialized as an empty array
     $users_profiles = [];
     //This returns PDO statement object
-    $sql_query = "SELECT user_id,user_name,user_email,user_password 
-                  FROM tsi_user_registrations ORDER BY user_id DESC;";
+    $sql_query = "SELECT user_id,user_name,user_email,user_password,created_at 
+                  FROM tsi_user_registrations ORDER BY user_id ASC;";
 
-      // Prepare the query statement
-        $stmt = $pdo->prepare($sql_query);
+    // Prepare the query statement
+    $stmt = $pdo->prepare($sql_query);
 
-         // Execute the statement
-        $stmt->execute();// execute the query first then now fetch the data
+    // Execute the statement
+    $stmt->execute(); // execute the query first then now fetch the data
 
-        // Fetch all results into the $users_profiles array
-        $users_profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
-         
-        // Optional: for debugging
-     echo "<pre>";
-     print_r($users_profiles);
-     echo "</pre>";
-     echo "<br>";
-         // Close connections and statement
-        $pdo = null; 
-        $stmt = null; 
-    }
+    // Fetch all results into the $users_profiles array
+    //This will return a multidimentional assosiative array and displays data from the last row[first to be inserted]
+    $users_profiles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Optional: for debugging
+    echo "<pre>";
+    print_r($users_profiles);
+    echo "</pre>";
+    echo "<br>";
+    // Close connections and statement
+    $pdo = null;
+    $stmt = null;
+}
 
 catch(PDOException $e){
  die("Error : " . $e->getMessage());
@@ -50,17 +51,18 @@ catch(PDOException $e){
                     <th>user_email</th>
                     <th>user_password</th>
                     <th>Date_created</th>
+                    <th>take_actions</th>
                 </tr>
             </thead>
             
             <tbody>
-                <tr>
                 <?php foreach($users_profiles as $user_profile):?>
-                <td><?= htmlspecialchars($users_profiles['user_id'])?></td>
-                <td><?= htmlspecialchars($users_profiles['username'])?></td>
-                <td><?= htmlspecialchars($users_profiles['email'])?></td>
-                <td><?= htmlspecialchars($users_profiles['password'])?></td>
-                <td><?= htmlspecialchars($users_profiles['created_at'])?></td>
+                <tr>
+                <td><?= htmlspecialchars($user_profile['user_id'])?></td> 
+                <td><?= htmlspecialchars($user_profile['user_name'])?></td>
+                <td><?= htmlspecialchars($user_profile['user_email'])?></td>
+                <td><?= htmlspecialchars($user_profile['user_password'])?></td>
+                <td><?= htmlspecialchars($user_profile['created_at'])?></td>
                 <td><a href="tsiupdate.php" target="_blank" rel="noopener noreferrer">Edit Credentials</a></td>
                 <td><a href="tsidelete.php" target="_blank" rel="noopener noreferrer"
                 onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a></td>
@@ -69,5 +71,7 @@ catch(PDOException $e){
             </tbody>
         </table>
         <?php endif;?>
+        <br>
+        <br>
 </body>
 </html>

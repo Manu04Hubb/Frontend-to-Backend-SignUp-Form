@@ -7,7 +7,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $pwd_confirm = $_POST['pwd_confirm'];
     
 
-    require_once 'tsi_dbconnection.php';
+    require_once 'tsidb_connection.php';
     //Hash users password first
     $password_hashed = password_hash($password,PASSWORD_DEFAULT);
     //Verify the hased password
@@ -28,7 +28,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $stmt = null;
     die();
 }
-
+//
 
 ?>
 <!DOCTYPE html>
@@ -57,7 +57,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <br><br>
 
         <button type="submit" >Register</button>
-        <button type="submit">Update Profile</button>
+        <button type="submit"><a href="tsicreate.php" target="_blank" rel="noopener noreferrer">Display UserProfile</a></button>
         <p>Already Have an account? <a href="tsilogin.php" target="_blank" rel="noopener noreferrer">Login</a></p>
         <p>To Change Credentials <a href="tsiupdate.php" target="_blank" rel="noopener noreferrer">Change username or password</a></p>
         <p>To Logout <a href="tsidelete.php" target="_blank" rel="noopener noreferrer">Logout</a></p>

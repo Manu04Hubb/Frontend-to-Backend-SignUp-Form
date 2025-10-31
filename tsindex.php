@@ -41,6 +41,7 @@ catch(PDOException $e){
     <link rel="stylesheet" href="tstyle.css">
 </head>
 <body>
+    <h2>Information Retrieved from the Database</h2>
     <?php if(empty($users_profiles)):?>
         <p>No User Profile found</p>
     <?php else:?>

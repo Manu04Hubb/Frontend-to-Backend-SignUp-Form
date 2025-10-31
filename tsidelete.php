@@ -1,14 +1,18 @@
 <?php
-  //To Handle Delete Logic
-  if($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $delete_query = "DELETE * FROM tsi_user_registrations 
-    WHERE user_name = :user_name AND user_email = :user_email;";
+require_once 'tsidb_connection.php';
 
-    $stmt->bindParam(":user_name",$username);
-    $stmt->bindParam("user_email",$email);
+//To Handle Delete Logic
+try {
+  $delete_query = "DELETE FROM tsi_user_registrations 
+    WHERE user_id = 3;";
 
-    $stmt = $pdo->excecute();
-     $pdo = null;
-    $stmt = null;
-    die();
-    }
+  $stmt = $pdo->prepare($delete_query);
+
+
+  $stmt->execute();
+  $pdo = null;
+  $stmt = null;
+  die();
+} catch (PDOException $e) {
+  die("Error : " . $e->getMessage());
+}

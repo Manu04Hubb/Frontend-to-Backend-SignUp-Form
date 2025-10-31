@@ -1,33 +1,19 @@
 <?php
-if($_SERVER['REQUEST_METHOD' === 'POST']){
-//Handle Update Logic
-    $update_query = "UPDATE tsi_user_registrations SET 
-    user_name=:user_name,user_email:user_email,user_password:user_password; WHERE user_id=:user_id";
+require_once 'tsidb_connection.php';
 
-    $stmt = $pdo->prepare($update_query);
+    //Handle Update Logic
+    try {
+        $update_query = "UPDATE tsi_user_registrations SET 
+        user_name = 'foomoo', user_email = 'foomoo@gmail.com'  WHERE user_id = 2;";
 
-    $stmt->bindParam(":user_name",$username);
-    $stmt->bindParam(":user_email",$email);
-    $stmt->bindParam(":user_password",$password);
+        $stmt = $pdo->prepare($update_query);
 
-    $stmt->excecute();
+      
+        $stmt->execute();
 
-    $pdo = null;
-    $stmt = null;
-    die();
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Credentials</title>
-</head>
-<body>
-    
-</body>
-</html>
-
-
-
+        $pdo = null;
+        $stmt = null;
+        die();
+    } catch (PDOException $e) {
+        die("Error :" . $e->getMessage());
+    }

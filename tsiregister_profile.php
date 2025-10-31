@@ -57,10 +57,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <br><br>
 
         <button type="submit" >Register</button>
-        <button type="submit"><a href="tsicreate.php" target="_blank" rel="noopener noreferrer">Display UserProfile</a></button>
+        <button type="submit"><a href="tsindex.php" target="_blank" rel="noopener noreferrer">Display UserProfile</a></button>
         <p>Already Have an account? <a href="tsilogin.php" target="_blank" rel="noopener noreferrer">Login</a></p>
-        <p>To Change Credentials <a href="tsiupdate.php" target="_blank" rel="noopener noreferrer">Change username or password</a></p>
-        <p>To Logout <a href="tsidelete.php" target="_blank" rel="noopener noreferrer">Logout</a></p>
     </form>
 </body>
 </html>

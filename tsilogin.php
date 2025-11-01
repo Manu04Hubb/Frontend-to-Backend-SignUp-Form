@@ -6,8 +6,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   $login_username = $_POST['login_username'];
   $login_password = $_POST['login_password'];
 
-  require_once 'tsiregisterlogindbconnect.php';
-  require_once 'tsiregister.php'; 
+  require_once 'tsidb_connection.php';
+  require_once 'tsiregister_profile.php'; 
   
 
   if($login_username !== $username){
@@ -21,6 +21,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     echo "Welcome back";
   }
 
+}else{
+  //header("Location:tsiregister_profile.php");
+ // die();
 }
 ?>
 <!DOCTYPE html>
@@ -31,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <title>Login Document</title>
 </head>
 <body>
-    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="POST">
         <label for="Username">Username</label>
         <input type="text" name="login_username" placeholder="Enter Username" required>
         <br><br>

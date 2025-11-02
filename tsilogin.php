@@ -7,7 +7,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   $login_password = $_POST['login_password'];
 
   require_once 'tsidb_connection.php';
-  require_once 'tsiregister_profile.php'; 
   
 
   if($login_username !== $username){

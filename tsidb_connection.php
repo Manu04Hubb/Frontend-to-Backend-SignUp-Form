@@ -4,7 +4,7 @@ $servername = 'localhost';
 $dbusername = 'root';
 $dbpassword = '';
 
-$pdo = new PDO("mysql:dbname=$dbname;servername=$servername",$dbusername,$dbpassword);
+$pdo = new PDO("host=$servername;mysql:dbname=$dbname",$dbusername,$dbpassword);
 
 if(!$pdo){
   echo "Connection to database unsuccessful!";

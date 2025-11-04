@@ -1,10 +1,10 @@
 <?php
 $dbname = 'tsidb_Registration';
-$servername = 'localhost';
+$host = 'localhost';
 $dbusername = 'root';
 $dbpassword = '';
 
-$pdo = new PDO("host=$servername;mysql:dbname=$dbname",$dbusername,$dbpassword);
+$pdo = new PDO("mysql:dbname=$dbname;host=$host",$dbusername,$dbpassword);
 
 if(!$pdo){
   echo "Connection to database unsuccessful!";

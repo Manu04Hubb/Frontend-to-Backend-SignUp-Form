@@ -1,26 +1,19 @@
 <?php
 require_once 'tsidb_connection.php';
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $id = $_POST['user_id'];
-    $user_name = $_POST['username'];
-    $user_email = $_POST['email'];
-    $user_password = $_POST['password'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'show_users') {
+  
     try {
         // Variable to hold the results, initialized as an empty array
         $users_profiles = [];
         //This returns PDO statement object
-        $sql_query = "SELECT :user_id,:user_name,:user_email,:user_password,:created_at 
-                      FROM tsi_user_registrations ORDER BY :user_id ASC;";
+        $sql_query = "SELECT user_id,user_name,user_email,user_password,created_at 
+                      FROM tsi_user_registrations ORDER BY user_id ASC;";
 
         // Prepare the query statement
         $stmt = $pdo->prepare($sql_query);
 
-        //bind parameters
-        $stmt->bindParam(":user_id",$id);
-        $stmt->bindParam(":user_name",$user_name);
-        $stmt->bindParam(":user_email",$user_email);
-        $stmt->bindParam(":user_password",$user_password);
-        $stmt->bindParam(":created_at",date('Y-m-d H:i:s'));
+      
 
         // Execute the statement
         $stmt->execute(); // execute the query first then now fetch the data
@@ -40,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } catch (PDOException $e) {
         die("Error : " . $e->getMessage());
     }
-} else {
+} 
+else {
     die("Invalid request");
 }
 ?>
@@ -59,7 +53,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if (empty($users_profiles)): ?>
         <p>No User Profile found</p>
     <?php else: ?>
-
         <table>
             <thead>
                 <tr>

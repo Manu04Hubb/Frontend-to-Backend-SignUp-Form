@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 } 
 else {
-    die("Invalid request");
+    return;
 }
 ?>
 <!DOCTYPE html>
@@ -74,9 +74,17 @@ else {
                         <td><?= htmlspecialchars($user_profile['user_password']) ?></td>
                         <td><?= htmlspecialchars($user_profile['created_at']) ?></td>
                         <td>
-                            <a href="tsiupdate.php" target="_blank" rel="noopener noreferrer">Edit Credentials</a> <br>
-                            <a href="tsidelete.php" target="_blank" rel="noopener noreferrer"
-                                onclick="return confirm('Are you sure you want to delete your account?');">Delete Account</a>
+                            <form action="tsiupdate.php" method="post">
+                                <input type="hidden" name="user_id" value="<?= htmlspecialchars($user_profile['user_id']) ?>">
+                                <input type="hidden" name="action" value="load_user">
+                                <button type="submit">Edit</button>
+                            </form>
+                              <br>
+                                <form action="tsidelete.php" method="POST"  onsubmit="return confirm('Are you sure you want to delete this user?');">
+                                    <input type="hidden" name="user_id" value="<?= htmlspecialchars($user_profile['user_id']) ?>">
+                                    <input type="hidden"  name="action" value="delete_user">
+                                    <button type="submit">Delete</button>
+                                </form>
                         </td>
                     </tr>
                 <?php endforeach; ?>

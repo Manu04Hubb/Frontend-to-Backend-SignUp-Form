@@ -81,13 +81,13 @@ else {
                             <form action="tsiupdate.php" method="post">
                                 <input type="hidden" name="user_id" value="<?= htmlspecialchars($user_profile['user_id']) ?>">
                                 <input type="hidden" name="action" value="load_user">
-                                <button type="submit">Edit</button>
+                                <button id="editBtn" type="submit">Edit</button>
                             </form>
                               <br>
                                 <form action="tsidelete.php" method="POST"  onsubmit="return confirm('Are you sure you want to delete this user?');">
                                     <input type="hidden" name="user_id" value="<?= htmlspecialchars($user_profile['user_id']) ?>">
                                     <input type="hidden"  name="action" value="delete_user">
-                                    <button type="submit">Delete</button>
+                                    <button id="deleteBtn" type="submit">Delete</button>
                                 </form>
                         </td>
                     </tr>

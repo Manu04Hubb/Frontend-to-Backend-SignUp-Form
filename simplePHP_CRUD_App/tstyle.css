@@ -33,6 +33,22 @@ tr,th,td{
     text-align: center;
     padding: 10px;
 }
+#editBtn, #deleteBtn {
+  background-color: #b94bd498;
+  padding: 8px 16px;
+  border: none;
+  font-size: 14px;
+  border-radius: 16px;
+  width: 100px;
+  transition: background-color 0.3s ease;
+}
+#editBtn:hover, #deleteBtn:hover {
+  background-color: #7e12e4;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.5s ease;
+}
+
 
 /*index.html styling */
 #viewUsers{
@@ -41,16 +57,25 @@ tr,th,td{
   text-align: center;
   margin-top: 30px;
   align-items: center;
-  width: 200px;
+  justify-items: center;
+
 
 }
 #viewBtn {
   background-color: #28a745;
   padding: 12px 20px;
   font-size: 16px;
-  border-radius: 8px;
+  border-radius: 18px;
+  border: none;
+  color: white;
+  width: 250px;
   transition: background-color 0.3s ease;
 
+}
+p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 #viewBtn:hover {
   background-color: #07771f;
@@ -59,7 +84,11 @@ tr,th,td{
 }
 /*tsindex styling*/
 #userManagement{
-  text-align: center;
   margin-top: 40px;
-  background-color: #c2af7c;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }

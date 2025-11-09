@@ -60,6 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <!-- Cache busting for CSS file 
     to ensure the latest styles are loaded -
     by appending a query string with the current timestamp.
+    thereby forcing the browser to fetch the latest version.
+    the v parameter is arbitrary and can be named anything.
      -->
     <link rel="stylesheet" href="tstyle.css?v=<?php echo time(); ?>">
 </head>

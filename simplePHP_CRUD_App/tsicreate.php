@@ -58,7 +58,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <br><br>
 
         <button type="submit" >Register</button>
-        <button type="submit"><a href="tsindex.php" target="_blank" rel="noopener noreferrer">Display UserProfile</a></button>
         <p>Already Have an account? <a href="tsilogin.php" target="_blank" rel="noopener noreferrer">Login</a></p>
     </form>
 </body>

@@ -45,7 +45,11 @@ else {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display-User-Profile-Credentials</title>
-    <link rel="stylesheet" href="tstyle.css">
+    <!-- Cache busting for CSS file 
+    to ensure the latest styles are loaded -
+    by appending a query string with the current timestamp.
+     -->
+    <link rel="stylesheet" href="tstyle.css?v=<?php echo time(); ?>">
 </head>
 
 <body>

@@ -8,8 +8,10 @@ $pdo = new PDO("mysql:dbname=$dbname;host=$host",$dbusername,$dbpassword);
 
 if(!$pdo){
   echo "Connection to database unsuccessful!";
+  echo "<br>";
 }else{
    echo "Connection to database successful!";
+   echo "<br>";
 }
 
 /*

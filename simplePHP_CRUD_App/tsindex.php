@@ -13,8 +13,8 @@
 </head>
 
 <body>
+<h1>User Management System</h1>
   <div id="userManagement">
-    <h1>User Management System</h1>
     <a href="tsicreate.php">Add User</a> |
     <a href="index.php">View Users</a>
 </div>

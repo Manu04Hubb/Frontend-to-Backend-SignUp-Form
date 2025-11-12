@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    
+
 
     //Handle actual update
     elseif (isset($_POST['action']) && $_POST['action'] === 'update_user') {
@@ -34,8 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bindParam(':password', $password);
             $stmt->execute();
             echo "<p>User updated successfully! <a href='tsiread.php'> ->Go Back</a></p>";
-              $stmt = null;
-              $pdo = null;
+            $stmt = null;
+            $pdo = null;
             die();
         } catch (PDOException $e) {
             die("Error : " . $e->getMessage());
@@ -44,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p style='color:red;'>Invalid input.</p>";
     }
     // Close connections
-  
+
 } else {
     die("Invalid request");
 }
@@ -67,21 +67,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <h2>Edit User Credentials</h2>
-    <?php if (!empty($user)): ?>
-        <form action="tsiupdate.php" method="POST">
-            <input type="hidden" name="action" value="update_user">
-            <input type="hidden" name="user_id" value="<?= htmlspecialchars($user['user_id']) ?>">
+    <div class="user-edited-credentials">
+        <h2>Edit User Credentials</h2>
+        <?php if (!empty($user)): ?>
+            <form  action="tsiupdate.php" method="POST">
+                <input type="hidden" name="action" value="update_user">
+                <input type="hidden" name="user_id" value="<?= htmlspecialchars($user['user_id']) ?>">
 
-            <label>Username:</label><br>
-            <input type="text" name="username" value="<?= htmlspecialchars($user['user_name']) ?>" required><br><br>
+                <label>Username:</label><br>
+                <input type="text" name="username" value="<?= htmlspecialchars($user['user_name']) ?>" required><br><br>
 
-            <label>Password:</label><br>
-            <input type="password" name="password" value="<?= htmlspecialchars($user['user_password']) ?>" required><br><br>
+                <label>Password:</label><br>
+                <input type="password" name="password" value="<?= htmlspecialchars($user['user_password']) ?>" required><br><br>
 
-            <button type="submit">Update</button>
-        </form>
-    <?php endif; ?>
+                <button id="updateBtn" type="submit">Update</button>
+            </form>
+        <?php endif; ?>
+    </div>
 </body>
 
 </html>

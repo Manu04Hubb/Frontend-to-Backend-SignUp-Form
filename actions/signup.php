@@ -1,6 +1,6 @@
 <?php
 include "../dbconfig/db.php";
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     $fullname = trim(htmlspecialchars($_POST['fullname']));
     $email = trim(htmlspecialchars($_POST['email']));
     $password = trim($_POST['password']);
@@ -22,25 +22,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
      //check if email already exists
-     $checkQuery = "SELECT * FROM users WHERE email = ?";
-     $stmt = mysqli_prepare($conn,$checkQuery);
-     mysqli_stmt_bind_param($stmt,"s",$email);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        if(mysqli_num_rows($result) > 0){
+     $checkQuery = "SELECT * FROM users WHERE email = :email";
+     $stmt = $pdo->prepare($checkQuery);
+     $stmt->bindParam(":email",$email);
+        $stmt->execute();
+        $email_result = $stmt->fetch(PDO::FETCH_ASSOC);
+        if($email_result > 0){
             die("Email already registered. Please use a different email.");
         }
 
     //insert a new user into database
-    $insertQuery = "INSERT INTO users (fullname, email, password) VALUES (?, ?, ?)";
-    $stmt = mysqli_prepare($conn,$insertQuery);
-    mysqli_stmt_bind_param($stmt,"sss",$fullname,$email,$hashed_password);
-    if(mysqli_stmt_execute($stmt)){
+    $insertQuery = "INSERT INTO users (fullname, email, password) VALUES (:fullname,:email ,:password);";
+    $stmt = $pdo->prepare($insertQuery);
+    $stmt->bindParam(":fullname",$fullname);
+    $stmt->bindParam(":email",$email);
+    $stmt->bindParam(":password",$hashed_password);
+    $stmt->execute();
+    if($stmt){
         echo "User registered successfully.You can now <a href='../index.php'>login</a>.";
     }else{
-        echo "Error: " . mysqli_error($conn);
+        echo "Error: " . $pdo->errorInfo();
     }
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
-
+    $pdo = null;
+    $stmt = null;
+    
 }

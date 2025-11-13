@@ -3,11 +3,18 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "user_registration";
-$conn = new mysqli($servername,$username,$password,$dbname);
-if($conn->connect_error){
-    die("Connection failed: " . $conn->connect_error);
-}else{
- echo "Connected successfully";
+// Create connection using PDO
+$pdo = new PDO("mysql:dbname=$dbname;host=$servername",$username,$password);
+
+try{
+    $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    if($pdo){
+        echo "Connection to database successful!";
+    }else{
+        echo "Connection to database unsuccessful!";
+    }   
+}catch(PDOException $e){
+    die("Connection failed: " . $e->getMessage());
 }
+
 echo "<br>";
-print_r($conn);

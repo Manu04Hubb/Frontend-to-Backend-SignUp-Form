@@ -48,7 +48,8 @@
                 <td><?= htmlspecialchars($user['password']) ?></td>
                 <td><?= htmlspecialchars($user['created_at']) ?></td>
                 <td>
-                    <form action="mydelete.php" method="post">
+                    <form action="mydelete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
+                        <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
                         <input type="hidden" name="delete" value="delete-fullname">
                         <button type="submit">Delete</button>
                     </form>

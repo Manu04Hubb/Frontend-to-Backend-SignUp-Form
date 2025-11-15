@@ -50,12 +50,13 @@
                 <td>
                     <form action="mydelete.php" method="post" onsubmit="return confirm('Are you sure you want to delete this user?');">
                         <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
-                        <input type="hidden" name="delete" value="delete-fullname">
+                        <input type="hidden" name="delete" value="delete-user">
                         <button type="submit">Delete</button>
                     </form>
-                    <form action="myedit.php" method="post">
-                        <input type="hidden" name="edit" value="edit-fullname">
-                        <button type="submit">Update</button>
+                    <form action="myupdate.php" method="post">
+                        <input type="hidden" name="id" value="<?= htmlspecialchars($user['id']) ?>">
+                        <input type="hidden" name="fetch" value="fetch-user">
+                        <button type="submit">Edit</button>
                     </form>
                 </td>
             </tr>

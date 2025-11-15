@@ -1,6 +1,6 @@
 <?php 
    require_once 'dbconfig/db.php';
- if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete']) && $_POST['delete'] === 'delete-fullname'){
+ if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete']) && $_POST['delete'] === 'delete-user'){
    $id = $_POST['id'];
    $delete_query = "DELETE FROM users WHERE id = :id;";
    $stmt = $pdo->prepare($delete_query);
